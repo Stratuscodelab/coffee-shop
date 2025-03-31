@@ -1,36 +1,137 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+```
+      )  (
+     (   ) )
+      ) ( (
+    {_______)_
+ .-'---------|  
+( C|/\/\/\/\/|
+ '-./\/\/\/\/|
+   '_________'
+    '-------'
 
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Coffee Shop Web App
+Java script coffee shop website, built with Next.js 
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The website has a simple order screen with buttons to add coffee to a basket, it also contains a checkout button that will tally up the cost of the coffee and provide you with a total cost. There is a dropdown feature that you can select the type of payment for the order, this is not cofigured for a real world scenario but the options are there to amend as apropriate.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The whole meaning of this repo is to demonstrate a simple understanding of particular concepts within Java script for "my" learning. The following coding principles are demonstrated. 
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+## Overview
+Welcome to the **Coffee Shop Web App**, a modern web-based ordering system built with **JavaScript, React, and Next.js**. This application allows users to browse coffee products, add them to a cart, and proceed to checkout.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Features
+✅ Dynamic product listing  
+✅ Add/remove items from the cart  
+✅ Checkout functionality  
+✅ Modern UI with responsive design  
+✅ Fast client-side navigation with Next.js  
+✅ API integration for fetching product data  
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## JavaScript Principles Demonstrated
+This project applies several core JavaScript and React development principles:
 
-## Deploy on Vercel
+### 1. **Modularization & Component-Based Architecture**
+- The app is structured into reusable components like `ProductCard.js`, `Cart.js`, and `Checkout.js`.
+- **Separation of concerns** ensures better maintainability.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 2. **State Management**
+- Uses **React `useState`** to manage cart items.
+- Implements **Context API** for global state management.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```jsx
+const [cart, setCart] = useState([]);
+```
+
+### 3. **Event Handling**
+- Uses event listeners like `onClick` for handling cart updates.
+
+```jsx
+const addToCart = (item) => {
+    setCart([...cart, item]);
+};
+```
+
+### 4. **Routing & Navigation**
+- Utilizes Next.js client-side routing with `useRouter()`.
+
+```jsx
+import { useRouter } from 'next/navigation';
+const goToCheckout = () => {
+    router.push('/checkout');
+};
+```
+
+### 5. **Asynchronous Programming (API Calls)**
+- Fetches product data from an API using `useEffect()` and `fetch()`.
+
+```jsx
+useEffect(() => {
+    fetch('/api/products')
+        .then(response => response.json())
+        .then(data => setProducts(data));
+}, []);
+```
+
+### 6. **Higher-Order Functions (HOFs)**
+- Uses `.map()`, `.filter()`, and `.reduce()` for data manipulation.
+
+```jsx
+const totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
+```
+
+### 7. **Global State Management (Context API)**
+- Shares cart state across components.
+
+```jsx
+const CartContext = createContext();
+export const CartProvider = ({ children }) => {
+    const [cart, setCart] = useState([]);
+    return <CartContext.Provider value={{ cart, setCart }}>{children}</CartContext.Provider>;
+};
+```
+
+### 8. **Conditional Rendering**
+- Displays different UI based on state.
+
+```jsx
+{cart.length === 0 ? <p>Your cart is empty</p> : <CartItems />}
+```
+
+### 9. **Error Handling**
+- Implements `try...catch` blocks for API calls.
+
+```jsx
+try {
+    const response = await fetch('/api/checkout');
+} catch (error) {
+    console.error('Checkout failed:', error);
+}
+```
+
+## Installation
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/your-username/coffee-shop.git
+   ```
+2. Navigate into the project directory:
+   ```sh
+   cd coffee-shop
+   ```
+3. Install dependencies:
+   ```sh
+   npm install
+   ```
+4. Run the development server:
+   ```sh
+   npm run dev
+   ```
+
+## Contribution
+Feel free to fork this repository and submit a pull request if you'd like to contribute!
+
+## License
+This project is licensed under the MIT License.
+
