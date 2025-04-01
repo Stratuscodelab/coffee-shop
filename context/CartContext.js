@@ -1,26 +1,22 @@
-"use client"; // This tells the server to send the client-side code to the browser
-import { createContext, useState, useContext } from 'react';
+"use client";
+import { createContext, useContext, useState } from 'react';
 
 const CartContext = createContext();
 
-export const useCartContext = () => {
-  return useContext(CartContext);
-};
-
-export const CartProvider = ({ children }) => {
+export function CartProvider({ children }) {
   const [order, setOrder] = useState([]);
   const [total, setTotal] = useState(0);
 
-  const addToOrder = (item) => {
-    setOrder([...order, item]);
-    setTotal(total + item.price);
+  const addToCart = (item) => {
+    setOrder((prevOrder) => [...prevOrder, item]);
+    setTotal((prevTotal) => prevTotal + item.price);
   };
 
-  const removeFromOrder = (index) => {
+  const removeFromCart = (index) => {
     const newOrder = [...order];
     const removedItem = newOrder.splice(index, 1);
     setOrder(newOrder);
-    setTotal(total - removedItem[0].price);
+    setTotal((prevTotal) => prevTotal - removedItem[0].price);
   };
 
   const clearCart = () => {
@@ -29,8 +25,12 @@ export const CartProvider = ({ children }) => {
   };
 
   return (
-    <CartContext.Provider value={{ order, total, addToOrder, removeFromOrder, clearCart }}>
+    <CartContext.Provider value={{ order, total, addToCart, removeFromCart, clearCart }}>
       {children}
     </CartContext.Provider>
   );
-};
+}
+
+export function useCartContext() {
+  return useContext(CartContext);
+}

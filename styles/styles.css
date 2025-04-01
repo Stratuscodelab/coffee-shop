@@ -1,40 +1,185 @@
-/* styles.css */
+/* General Styles */
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: #f5f5dc;
-    margin: 0;
-    padding: 20px;
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  background-color: #f5f5dc;
+  margin: 0;
+  padding: 20px;
+  color: #333;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+  font-weight: normal;
+}
+
+h1 {
+  color: #8b4513;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+h2 {
+  color: #6b4226;
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+h3 {
+  color: #6b4226;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+h4 {
+  color: #6b4226;
+  font-size: 1.2rem;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menuleft {
+  text-align: left;
+}
+
+/* Buttons */
+button {
+  background-color: #8b4513;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #6b4226;
+  transform: scale(1.05);
+}
+
+button:focus {
+  outline: 2px solid #6b4226;
+}
+
+.checkout-button {
+  background-color: #8b4513;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.checkout-button:hover {
+  background-color: #6b4226;
+  transform: scale(1.05);
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Navigation */
+nav {
+  background-color: #8b4513;
+  padding: 10px;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  margin: 0 15px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* Footer */
+footer {
+  background-color: #6b4226;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+/* Cards */
+.card, .cardcheckout {
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  text-align: center;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.card:hover, .cardcheckout:hover {
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+}
+
+/* Checkout Section */
+.checkout-right {
+  text-align: center;
+  padding: 10px;
+}
+
+.cardcheckout {
+  width: 100%;
+  max-width: 500px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
   }
-  
-  h1 {
-    color: #8b4513;
+
+  nav ul {
+    flex-direction: column;
+    align-items: center;
   }
-  
-  h2 {
-    color: #6b4226;
-  }
-  
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  li {
-    margin: 10px 0;
-  }
-  
+
   button {
-    background-color: #8b4513;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    margin-left: 10px;
-    cursor: pointer;
-    border-radius: 5px;
+    width: 100%;
+    margin: 5px 0;
   }
-  
-  button:hover {
-    background-color: #6b4226;
+
+  .card, .cardcheckout {
+    width: 90%;
   }
-  
+}

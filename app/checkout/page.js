@@ -1,18 +1,18 @@
 "use client";
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useCartContext } from '../../context/CartContext'; // Import Cart Context (for global state)
+import { useCartContext } from '../../context/CartContext';
 
 export default function Checkout() {
-  const { order, total, clearCart } = useCartContext(); // Cart context to access order and total
+  const { order, total, clearCart } = useCartContext();
   const [name, setName] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("Credit Card");
   const router = useRouter();
 
   const handleCheckout = () => {
     alert(`Order confirmed! Total: $${total.toFixed(2)}\nName: ${name}\nPayment: ${paymentMethod}`);
-    clearCart(); // Clear cart after successful checkout
-    router.push("/"); // Redirect to home page
+    clearCart();
+    router.push("/");
   };
 
   return (
@@ -20,9 +20,13 @@ export default function Checkout() {
       <h1>Checkout</h1>
       <h2>Review Your Order</h2>
       <ul>
+        <div className="cardcheckout">
         {order.map((item, index) => (
-          <li key={index}>{item.name} - ${item.price.toFixed(2)}</li>
+          <li key={index}>
+            {item.name} - ${item.price.toFixed(2)}
+          </li>
         ))}
+        </div>
       </ul>
       <h3>Total: ${total.toFixed(2)}</h3>
 
